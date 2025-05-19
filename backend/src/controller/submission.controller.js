@@ -69,6 +69,5 @@ export const getAllTheSubmissionsForProblem = async (req,res) => {
     } catch (error) {
         console.error("Fetch all the submission for problem error: ", error);
         res.status(500).json({error: "Failed to fetch submissions!"})
-        
     }
 }
