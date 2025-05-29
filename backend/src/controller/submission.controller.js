@@ -10,6 +10,10 @@ export const getAllSubmission = async (req,res) => {
             }
         })
 
+        if(!submissions) {
+            return res.status(404).json({error: "Submissions not found!!"})
+        }
+
         res.status(200).json({
             success: true,
             message: "Submissions fetched successfully!!",
@@ -34,7 +38,7 @@ export const getSubmissionsForProblem = async (req,res) => {
 
         res.status(200).json({
             success: true,
-            message: "Submission fetched successfully!!",
+            message: "Submission fetched successfully for problem!!",
             submissions
         })
     } catch (error) {

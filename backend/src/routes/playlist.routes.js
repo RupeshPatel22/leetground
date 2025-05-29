@@ -6,7 +6,7 @@ const playlistRoutes = express.Router()
 
 playlistRoutes.get("/", authMiddleware, getAllListDetails)
 playlistRoutes.get("/:playlistId", authMiddleware, getPlayListDetails)
-playlistRoutes.post("/create-plalist", authMiddleware, createPlaylist)
+playlistRoutes.post("/create-playlist", authMiddleware, createPlaylist)
 playlistRoutes.post("/:playlistId/add-problem", authMiddleware, addProblemToPlaylist)
 playlistRoutes.delete("/:playlistId", authMiddleware, deletePlaylists)
 playlistRoutes.delete("/:playlistId/remove-problem", authMiddleware, removeProblemFromPlaylist)

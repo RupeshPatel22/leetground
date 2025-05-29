@@ -17,13 +17,13 @@ export const getAllListDetails = async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message: "Playlist fetched successfully",
+      message: "All playlist fetched successfully",
       playLists,
     });
   } catch (error) {
-    console.error("Error fetching playlist: ", error);
+    console.error("Error fetching all playlist: ", error);
     res.status(500).json({
-      error: "Feailed to fetch the playlist",
+      error: "Feailed to fetch the all playlist",
     });
   }
 };
@@ -65,7 +65,7 @@ export const createPlaylist = async (req, res) => {
 
     const userId = req.user.id;
 
-    const playList = await db.playList.create({
+    const playList = await db.playlist.create({
       data: {
         name,
         description,
@@ -87,13 +87,22 @@ export const addProblemToPlaylist = async (req, res) => {
   const { playlistId } = req.params;
   const { problemIds } = req.body;
   try {
-    if (!Array.isArray(problemIds) || problemIds.length === 0) {
+    if (!Array.isArray(problemIds) || problemIds.length === 0 || problemIds.includes(undefined)) {
       return res.status(400).json({ error: "Invalid or missing problemsId" });
     }
+
+    
+    
+    // const validProblemIds = problemIds.filter((id) => typeof id === "string" && id.trim() !== "")
+    // const dataToInsert = validProblemIds.map((problemId) => ({
+    //     playlistId, problemId
+    //   }))
+      
     const addPlaylist = await db.problemInPlaylist.createMany({
-      data: problemIds.map((problemId) => {
-        playlistId, problemId;
-      }),
+        
+      data: problemIds.map((problemId) => ({
+        playlistId, problemId
+      }))
     });
 
     res.status(201).json({
