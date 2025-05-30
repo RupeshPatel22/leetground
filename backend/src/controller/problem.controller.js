@@ -183,7 +183,7 @@ export const updateProblem = async (req,res) => {
                 console.log(`result ${result}`);
 
                 if(result.status.id !== 3) {
-                    return res.status(400),json({
+                    return res.status(400),json({ 
                         error: `Testcase ${i + 1} failed to language ${language}`
                     })
                 }
@@ -209,7 +209,7 @@ export const updateProblem = async (req,res) => {
             return res.status(201).json({
                 success: true,
                 message: "Problem updated successfully",
-                problem: newProblem
+                problem: updatedProblem
             })
         }
      } catch (error) {
